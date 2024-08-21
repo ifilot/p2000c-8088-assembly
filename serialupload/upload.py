@@ -9,16 +9,15 @@ def upload(file):
     with open(file,'rb') as f:
         data = bytearray(f.read())
 
-    print('Transferring 0x%04X bytes' % len(data))
-
-    ser = serial.Serial('COM5', 1200, timeout=10)
+    ser = serial.Serial('COM5', 1200, timeout=10, rtscts=True)
     if not ser.isOpen():
         print("Opening port")
         ser.open()
     nrw = 0
-    nrw += ser.write(struct.pack('>H', len(data)))           # upload lower byte
-    print(nrw)
+    nrw += ser.write(struct.pack('<H', len(data)))           # upload lower byte
+    print('Transferring transaction sequence: %i bytes' % nrw)
     
+    print('Transferring 0x%04X bytes' % len(data))
     ser.write(data)
 
 if __name__ == '__main__':
