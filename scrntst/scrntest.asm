@@ -46,54 +46,14 @@ nextbyte:
     push si                     ; put pointer on stack (pointer can be garbled)
     mov bl,[si]                 ; load pixel to write
 
+%rep 8
     rcr bl,1
     rcl al,1
     and al,1
     mov ah,0ch                  ; set print pixel interrupt routine
     int 10h                     ; print pixel
     inc cx                      ; increment column
-    rcr bl,1
-    rcl al,1
-    and al,1
-    mov ah,0ch                  ; set print pixel interrupt routine
-    int 10h                     ; print pixel
-    inc cx                      ; increment column
-    rcr bl,1
-    rcl al,1
-    and al,1
-    mov ah,0ch                  ; set print pixel interrupt routine
-    int 10h                     ; print pixel
-    inc cx                      ; increment column
-    rcr bl,1
-    rcl al,1
-    and al,1
-    mov ah,0ch                  ; set print pixel interrupt routine
-    int 10h                     ; print pixel
-    inc cx                      ; increment column
-    rcr bl,1
-    rcl al,1
-    and al,1
-    mov ah,0ch                  ; set print pixel interrupt routine
-    int 10h                     ; print pixel
-    inc cx                      ; increment column
-    rcr bl,1
-    rcl al,1
-    and al,1
-    mov ah,0ch                  ; set print pixel interrupt routine
-    int 10h                     ; print pixel
-    inc cx                      ; increment column
-    rcr bl,1
-    rcl al,1
-    and al,1
-    mov ah,0ch                  ; set print pixel interrupt routine
-    int 10h                     ; print pixel
-    inc cx                      ; increment column
-    rcr bl,1
-    rcl al,1
-    and al,1
-    mov ah,0ch                  ; set print pixel interrupt routine
-    int 10h                     ; print pixel
-    inc cx                      ; increment column
+%endrep
 
     pop si                      ; retrieve pointer
     inc si                      ; increment pointer
