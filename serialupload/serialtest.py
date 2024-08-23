@@ -2,7 +2,7 @@
 import serial
 
 def main():
-    ser = serial.Serial('COM5', 1200, timeout=10, rtscts=True)
+    ser = serial.Serial('COM6', 1200, timeout=10, rtscts=True)
     if not ser.isOpen():
         print("Opening port")
         ser.open()
